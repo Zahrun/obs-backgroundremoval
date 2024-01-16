@@ -39,6 +39,7 @@ set(USE_SYSTEM_ONNXRUNTIME
     CACHE STRING "Use system ONNX Runtime")
 if(USE_SYSTEM_ONNXRUNTIME)
   if(OS_LINUX)
+	message(PATHIS="${CMAKE_MODULE_PATH}")
     find_package(Onnxruntime 1.14.1 REQUIRED)
     set(Onnxruntime_INCLUDE_PATH
         ${Onnxruntime_INCLUDE_DIR} ${Onnxruntime_INCLUDE_DIR}/onnxruntime
