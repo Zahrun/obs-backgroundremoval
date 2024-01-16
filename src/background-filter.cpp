@@ -7,10 +7,6 @@
 #include <coreml_provider_factory.h>
 #endif
 
-#ifdef __linux__
-#include <tensorrt_provider_factory.h>
-#endif
-
 #ifdef _WIN32
 #include <dml_provider_factory.h>
 #include <wchar.h>
@@ -195,11 +191,6 @@ static void createOrtSession(struct background_removal_filter *tf)
 #endif
 
   try {
-#ifdef __linux__
-    if (tf->useGPU == USEGPU_TENSORRT) {
-      Ort::ThrowOnError(OrtSessionOptionsAppendExecutionProvider_Tensorrt(sessionOptions, 0));
-    }
-#endif
 #ifdef _WIN32
     if (tf->useGPU == USEGPU_DML) {
       Ort::ThrowOnError(OrtSessionOptionsAppendExecutionProvider_DML(sessionOptions, 0));
